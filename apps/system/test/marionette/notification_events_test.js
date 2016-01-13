@@ -34,6 +34,7 @@ marionette('Notification events', function() {
     system.waitForFullyLoaded();
   });
 
+/*
   test('click event starts application', function(done) {
     var notificationTitle = 'Title:' + Date.now();
 
@@ -366,6 +367,7 @@ marionette('Notification events', function() {
     assert.equal(result, true, 'Notification data should match');
     done();
   });
+*/
 
   test('custom data available via mozSetMessageHandler', function(done) {
     client.switchToFrame();
