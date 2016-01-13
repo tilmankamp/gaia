@@ -58,13 +58,16 @@ VideoPlayer.prototype = {
   },
 
   invokeControls: function() {
-    if (!this.visibleControls()) {
-      this.rootElement.tap();
+    console.log('invokeControls...');
+    this.client.waitFor(function() {
+      return !this.visibleControls();
+    }.bind(this));
 
-      this.client.waitFor(function() {
-        return this.visibleControls();
-      }.bind(this));
-    }
+    this.rootElement.tap();
+
+    this.client.waitFor(function() {
+      return this.visibleControls();
+    }.bind(this));
   },
 
   _tapVideoControl: function(name) {
@@ -96,6 +99,7 @@ VideoPlayer.prototype = {
   },
 
   tapPlay: function() {
+    console.log('tapPlay...');
     this._tapVideoControl(this.Selectors.playButton);
     this.client.waitFor(function() {
       return this.isPlaying();
@@ -103,6 +107,7 @@ VideoPlayer.prototype = {
   },
 
   tapPause: function() {
+    console.log('tapPause...');
     this._tapVideoControl(this.Selectors.playButton);
     this.client.waitFor(function() {
       return !this.isPlaying();
@@ -110,6 +115,7 @@ VideoPlayer.prototype = {
   },
 
   tapMute: function() {
+    console.log('tapMute...');
     this._tapVideoControl(this.Selectors.muteButton);
     this.client.waitFor(function() {
       return this.isMuted();
@@ -117,6 +123,7 @@ VideoPlayer.prototype = {
   },
 
   tapUnmute: function() {
+    console.log('tapUnmute...');
     this._tapVideoControl(this.Selectors.muteButton);
     this.client.waitFor(function() {
       return !this.isMuted();
@@ -124,6 +131,7 @@ VideoPlayer.prototype = {
   },
 
   tapFullscreen: function() {
+    console.log('tapFullscreen...');
     this._tapVideoControl(this.Selectors.fullscreenButton);
   }
 };
