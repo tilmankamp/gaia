@@ -59,12 +59,13 @@ VideoPlayer.prototype = {
 
   invokeControls: function() {
     console.log('invokeControls...');
-    this.client.waitFor(function() {
-      return !this.visibleControls();
-    }.bind(this));
-
+    if(this.visibleControls()) {
+      this.rootElement.tap(0, 0);
+      this.client.waitFor(function() {
+        return !this.visibleControls();
+      }.bind(this));
+    }
     this.rootElement.tap();
-
     this.client.waitFor(function() {
       return this.visibleControls();
     }.bind(this));

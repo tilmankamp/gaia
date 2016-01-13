@@ -72,10 +72,12 @@ marionette('Video', function() {
     system.permissionYes.tap();
     system.gotoBrowser(videoUrl);
 
+
     client.waitFor(function() {
       return player.isFullScreen();
     });
 
+    client.helper.wait (1000);
     player.invokeControls();
     player.tapFullscreen();
 
